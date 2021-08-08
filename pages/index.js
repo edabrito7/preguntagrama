@@ -36,6 +36,18 @@ export default function Home() {
           >
             Instrucciones
         </Button>
+        <Button 
+          onClick={() => router.push('/instrucciones')}
+          type='alert'
+          >
+            Alert
+        </Button>
+        <Button 
+          onClick={() => router.push('/instrucciones')}
+          type='cancel'
+          >
+            Cancel
+        </Button>
       </div>
     </>
   )

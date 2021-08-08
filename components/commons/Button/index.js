@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 
 export default function Button ({type, onClick, children }) {
     const styles = {
-        primary: 'bg-primary border-primary',
-        secundary: 'bg-grayLight border-grayLight'
+        primary: 'bg-primary border-primary text-white hover:bg-opacity-90 hover:border-opacity-90',
+        secundary: 'bg-white border-primary text-black hover:text-primary',
+        alert: 'bg-white border-alert text-alert hover:bg-opacity-80 hover:border-opacity-80',
+        cancel: 'bg-alert border-alert text-white hover:bg-opacity-90 hover:border-opacity-90'
     }
     return (
         <button 
-        className={`m-2 border-4 w-7/12 rounded-md p-0.5 text-blueDark ${styles[type]}`}
+        className={`m-3 border-2 w-7/12 rounded-md p-0.5  font-bold uppercase ${styles[type]}`}
         onClick={onClick}
         >
             {children}
