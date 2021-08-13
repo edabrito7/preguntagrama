@@ -5,15 +5,12 @@ import Title from 'components/commons/Title'
 import Button from 'components/commons/Button'
 import TextInput from 'components/commons/TextInput'
 
-// hooks
-import { useText } from 'hooks/useText'
 
-export default function Registro () {
-    const email = useText()
+export default function IniciarSesion () {
     return (
         <>
             <Head>
-                <title>Registo</title>
+            <title>Iniciar Sesion</title>
             </Head>
             <section
             className='my-4 mx-1'
@@ -21,32 +18,16 @@ export default function Registro () {
                 <Title/>
                 <h2
                 className='text-lg font-bold text-center text-gray-700'
-                >Registrate gratis con tu email o cuenta de Google
+                >Inicia sesión con tu email o cuenta de Google
                 </h2>
                 <form>
-                    <TextInput
-                    label='Nombre'
-                    id='name'
-                    name='name'
-                    placeholder='Fernando'
-                    isRequired
-                    //handleChange={email.handleChange}
-                    />
-                    <TextInput
-                    label='Apellido'
-                    id='lastName'
-                    name='lastName'
-                    placeholder='Herrera'
-                    isRequired
-                    //handleChange={email.handleChange}
-                    />
                     <TextInput
                     label='Correo electrónico'
                     id='email'
                     name='email'
                     placeholder='prueba@email.com'
                     isRequired
-                    handleChange={email.handleChange}
+                    //handleChange={email.handleChange}
                     />
                     <TextInput
                     type='password'
@@ -58,7 +39,7 @@ export default function Registro () {
                     <Button 
                     type='primary'
                     onClick={() => console.log('nada')}
-                    >Registrarse
+                    >Iniciar sesión
                     </Button>
                     <Button
                     >Inicia sesión con Google
@@ -67,14 +48,14 @@ export default function Registro () {
                 </form>
                 <p 
                 className='flex justify-center'
-                >Ya tengo una cuenta
+                >No tengo una cuenta
                     <Link
-                    href='/iniciar-sesion'
+                    href='/registro'
                     >
                         <a 
                         className=' ml-2 text-blue-500 underline cursor-pointer'
                         
-                        >Inicia Sesion</a>
+                        >Registrase</a>
                     </Link>
                 </p>
             </section>

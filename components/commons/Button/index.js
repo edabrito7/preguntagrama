@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
 
 export default function Button ({type, onClick, children }) {
     const styles = {
-        primary: 'bg-primary border-primary text-white hover:bg-opacity-90 hover:border-opacity-90',
-        secundary: 'bg-white border-primary text-black hover:text-primary',
-        alert: 'bg-white border-alert text-alert hover:bg-opacity-80 hover:border-opacity-80',
-        cancel: 'bg-alert border-alert text-white hover:bg-opacity-90 hover:border-opacity-90'
+        primary: 'bg-blue-700 border-blue-700 text-white hover:bg-opacity-90 hover:border-opacity-90',
+        secundary: 'bg-white border-blue-600 text-blue-600 hover:text-blue-800 hover:border-blue-800',
+        alert: 'bg-white border-red-600 text-red-600 hover:text-red-800 hover:border-red-800',
+        cancel: 'bg-red-700 border-red-700 text-white hover:bg-opacity-90 hover:border-opacity-90'
     }
     return (
         <button 

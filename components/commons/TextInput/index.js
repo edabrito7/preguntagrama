@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 
-export default function TextInput ({label, type, id, name, disabled, placeholder, handleChange, handleBlur, isRequired}) {
+export default function TextInput ({label, type, id, name, disabled, placeholder, handleChange, handleBlur, isRequired, errors}) {
     return (
             <>
             <label
@@ -10,7 +10,7 @@ export default function TextInput ({label, type, id, name, disabled, placeholder
             >
                 {label}
                 <input
-                    className='border-2 rounded-md border-primary focus:bg-primary focus:text-white focus:outline-none'
+                    className='border-2 rounded-md border-black placeholder-gray-500 px-2 py-1 focus:bg-white focus:text-black focus:outline-none'
                     type={type}
                     id={id}
                     name={name}
@@ -22,7 +22,7 @@ export default function TextInput ({label, type, id, name, disabled, placeholder
                 />
             </label>
             <p className='text-alert mx-2 text-xs'>
-                Errores
+                {errors}
             </p>
             </>
     )
@@ -37,7 +37,8 @@ TextInput.propTypes = {
     disabled: PropTypes.bool,
     handleChange: PropTypes.func.isRequired,
     handleBlur: PropTypes.func,
-    isRequired: PropTypes.bool
+    isRequired: PropTypes.bool,
+    errors: PropTypes.string
 }
 
 
