@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 export default function QuestionBox ({ question, color }) {
     return (
         <section
-        className={`container mx-auto flex items-center border-4 p-4 border-${color}-700 bg-${color}-200 rounded-md w-10/12 h-52`}
+        className={`container mx-auto flex items-center border-4 p-4 border-${color}-700 bg-${color}-200 rounded-md w-10/12 h-44`}
         >
             <p
             className='text-center text-lg'

@@ -10,7 +10,7 @@ import CategoryTag from 'components/play/CategoryTag'
 import AnswerBox from 'components/play/AnswerBox'
 
 export default function Jugar () {
-    const color = getColor(2)
+    const color = getColor(8)
     console.log(color)
     /*if (!user) return (
         <section className='h-screen'>
@@ -27,7 +27,13 @@ export default function Jugar () {
             >
                 <Title/>
                 <section
-                className='flex my-4 justify-center items-center'
+                className='flex justify-around items-center'
+                >
+                    <p>Tiempo: 25s</p>
+                    <p>Vidas: Estrellas</p>
+                </section>
+                <section
+                className='flex my-2 justify-center items-center'
                 >
                     <h3
                     className='uppercase font-bold text-blue-900'
