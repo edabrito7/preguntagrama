@@ -2,16 +2,25 @@ import Head from 'next/head'
 
 import Title from 'components/commons/Title'
 import QuestionBox from 'components/play/QuestionBox'
-import Loading from 'components/commons/Loading'
-
-// utils
-import { getColor } from 'utils/color'
 import CategoryTag from 'components/play/CategoryTag'
 import AnswerBox from 'components/play/AnswerBox'
+import Loading from 'components/commons/Loading'
+
+// icons
+import Life from 'components/icons/life'
+
+
+// hooks
+import { useTimer } from 'hooks/useTimer'
+// utils
+import { getColor } from 'utils/color'
 
 export default function Jugar () {
+    const timer = useTimer()
+    const { state, dispatch } = timer
+    // console.log(timer.state)
     const color = getColor(8)
-    console.log(color)
+    // console.log(color)
     /*if (!user) return (
         <section className='h-screen'>
             <Loading/>
@@ -29,8 +38,15 @@ export default function Jugar () {
                 <section
                 className='flex justify-around items-center'
                 >
-                    <p>Tiempo: 25s</p>
-                    <p>Vidas: Estrellas</p>
+                    <p>Tiempo: {state.time}</p>
+                    <div
+                    className='flex'
+                    >
+                        <p>Vidas:</p>
+                        <Life/>
+                        <Life />
+                        <Life/>
+                    </div>
                 </section>
                 <section
                 className='flex my-2 justify-center items-center'
