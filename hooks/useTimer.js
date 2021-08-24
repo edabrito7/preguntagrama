@@ -13,7 +13,7 @@ function timeReducer(state,action) {
         case 'decrement':
             return { ...state, time: state.time - 1 }
         case 'extends': {
-            if (state.hasBeenExtended) return { ...state, time: state.time + 15, hasBeenExtended: true} 
+            if (!state.hasBeenExtended) return { ...state, time: state.time + 15, hasBeenExtended: true} 
             return { ...state }
         }
         case 'restart':
