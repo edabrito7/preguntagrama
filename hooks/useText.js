@@ -2,11 +2,14 @@ import { useState } from 'react'
 
 
 export function useText() {
-    const [value, setValue] = useState()
+    const [value, setValue] = useState({})
 
     const handleChange = (event) => {
-        console.log(event.target.value)
-        setValue(event.target.value)
+        const { target } = event
+        setValue({
+            ...value,
+            [target.name]: target.value
+        })
     }
 
     return {

@@ -5,11 +5,22 @@ import Title from 'components/commons/Title'
 import Button from 'components/commons/Button'
 import TextInput from 'components/commons/TextInput'
 
+//firebase
+import { singUp, loginWithGoogle } from 'firebase/client'
+
 // hooks
 import { useText } from 'hooks/useText'
+import { useUser } from 'hooks/useUser'
 
 export default function Registro () {
-    const email = useText()
+    const form = useText()
+    const user = useUser()
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        console.log(form.value)
+        const user = await singUp(form.value)
+        console.log(user)
+    }
     return (
         <>
             <Head>
@@ -23,14 +34,14 @@ export default function Registro () {
                 className='text-lg font-bold text-center text-gray-700'
                 >Registrate gratis con tu email o cuenta de Google
                 </h2>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <TextInput
                     label='Nombre'
                     id='name'
                     name='name'
                     placeholder='Fernando'
                     isRequired
-                    //handleChange={email.handleChange}
+                    handleChange={form.handleChange}
                     />
                     <TextInput
                     label='Apellido'
@@ -38,7 +49,7 @@ export default function Registro () {
                     name='lastName'
                     placeholder='Herrera'
                     isRequired
-                    //handleChange={email.handleChange}
+                    handleChange={form.handleChange}
                     />
                     <TextInput
                     label='Correo electrónico'
@@ -46,21 +57,24 @@ export default function Registro () {
                     name='email'
                     placeholder='prueba@email.com'
                     isRequired
-                    handleChange={email.handleChange}
+                    handleChange={form.handleChange}
                     />
                     <TextInput
                     type='password'
                     label='Contraseña'
-                    id='pass'
-                    name='pass'
+                    id='password'
+                    name='password'
+                    handleChange={form.handleChange}
                     />
                     <div className='flex mt-4'>
                     <Button 
-                    type='primary'
-                    onClick={() => console.log('nada')}
+                    type='submit'
+                    styles='primary'
                     >Registrarse
                     </Button>
                     <Button
+                    type='button'
+                    onClick={() => loginWithGoogle()}
                     >Inicia sesión con Google
                     </Button>
                     </div>
@@ -74,7 +88,7 @@ export default function Registro () {
                         <a 
                         className=' ml-2 text-blue-500 underline cursor-pointer'
                         
-                        >Inicia Sesion</a>
+                        >Inicia Sesión</a>
                     </Link>
                 </p>
             </section>

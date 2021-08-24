@@ -8,6 +8,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "firebase": "^8.10.0",
     "next": "latest",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",

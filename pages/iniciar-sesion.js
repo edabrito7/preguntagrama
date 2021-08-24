@@ -55,7 +55,7 @@ export default function IniciarSesion () {
                         <a 
                         className=' ml-2 text-blue-500 underline cursor-pointer'
                         
-                        >Registrase</a>
+                        >Registrarse</a>
                     </Link>
                 </p>
             </section>
