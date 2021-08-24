@@ -1,12 +1,14 @@
+import PropTypes from 'prop-types'
+
 // icons
 import Life from 'components/icons/life'
 
 // hooks
 import { useTimer } from 'hooks/useTimer'
 
-export default function TimeAndLives () {
+export default function TimeAndLives ({ lives }) {
     const timer = useTimer()
-    console.log(timer)
+    // handle lifes
     return (
         <section
             className='flex justify-around items-center'
@@ -16,10 +18,16 @@ export default function TimeAndLives () {
                 className='flex'
             >
             <p>Vidas:</p>
-            <Life/>
+            <Life
+            stroke='#00000029'
+            />
             <Life />
             <Life/>
             </div>
         </section>
     )
+}
+
+TimeAndLives.propTypes = {
+    lives: PropTypes.number.isRequired
 }

@@ -14,6 +14,7 @@ export default function Life(props) {
           stroke="currentColor"
           strokeLinecap="round"
           strokeLinejoin="round"
+          {...props}
         />
       </svg>
     )

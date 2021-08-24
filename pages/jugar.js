@@ -36,7 +36,7 @@ export default function Jugar () {
                 className='my-4 mx-1'
                 >
                     <Title/>
-                    <TimeAndLives/>
+                    <TimeAndLives lives={3} />
                     <section
                     className='flex my-2 justify-center items-center'
                     >
