@@ -1,4 +1,4 @@
-import { useReducer, useEffect } from 'react'
+import { useReducer, useEffect, useContext, createContext } from 'react'
 
 
 const INITIAL_STATE = {
@@ -6,6 +6,7 @@ const INITIAL_STATE = {
     hasBeenExtended: false
 }
 
+const TimerContext = createContext()
 
 function timeReducer(state,action) {
     switch(action.type) {
@@ -17,6 +18,8 @@ function timeReducer(state,action) {
         }
         case 'restart':
             return { INITIAL_STATE }
+        case 'stop':
+            return { ...state, time: 0, hasBeenExtended: true}
         default:
             throw new Error('No ACTION.TYPE')  
     }
@@ -24,7 +27,7 @@ function timeReducer(state,action) {
 
 let intervalID // id to clear setInterval
 
-export function useTimer () {
+export function TimerProvider ({ children }) {
     const [state, dispatch] = useReducer(timeReducer,INITIAL_STATE)
 
 
@@ -40,9 +43,17 @@ export function useTimer () {
     if (state.time === 0) {
         clearInterval(intervalID)
     }
-
-    return {
-        state,
-        dispatch
+    const value = { 
+        state, 
+        dispatch 
     }
+    return <TimerContext.Provider value={value}>{children}</TimerContext.Provider>
+}
+
+export function useTimer () {
+    const context = useContext(TimerContext)
+    if (context === undefined) {
+        throw new Error ('useTimer is not within a TimerProvider')
+    }
+    return context
 }
