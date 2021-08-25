@@ -1,12 +1,27 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 import Title from 'components/commons/Title'
 import Button from 'components/commons/Button'
 import TextInput from 'components/commons/TextInput'
+// firebase
+import { signIn } from 'firebase/client'
+// hooks
+import { useText } from 'hooks/useText'
+import { useUser } from 'hooks/useUser'
 
 
 export default function IniciarSesion () {
+    const form = useText()
+    //const user = useUser()
+    const router = useRouter()
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+        const response = await signIn(form.value)
+        response && router.push('/jugar')
+    }
+
     return (
         <>
             <Head>
@@ -20,25 +35,26 @@ export default function IniciarSesion () {
                 className='text-lg font-bold text-center text-gray-700'
                 >Inicia sesión con tu email o cuenta de Google
                 </h2>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <TextInput
                     label='Correo electrónico'
                     id='email'
                     name='email'
                     placeholder='prueba@email.com'
                     isRequired
-                    //handleChange={email.handleChange}
+                    handleChange={form.handleChange}
                     />
                     <TextInput
                     type='password'
                     label='Contraseña'
-                    id='pass'
-                    name='pass'
+                    id='password'
+                    name='password'
+                    handleChange={form.handleChange}
                     />
                     <div className='flex mt-4'>
                     <Button 
-                    type='primary'
-                    onClick={() => console.log('nada')}
+                    type='submit'
+                    style='primary'
                     >Iniciar sesión
                     </Button>
                     <Button

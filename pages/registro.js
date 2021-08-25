@@ -14,7 +14,7 @@ import { useUser } from 'hooks/useUser'
 
 export default function Registro () {
     const form = useText()
-    const user = useUser()
+    //const user = useUser()
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(form.value)

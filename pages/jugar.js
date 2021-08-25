@@ -1,10 +1,8 @@
 import Head from 'next/head'
-
-import Title from 'components/commons/Title'
-import QuestionBox from 'components/play/QuestionBox'
-import CategoryTag from 'components/play/CategoryTag'
-import AnswerBox from 'components/play/AnswerBox'
-import TimeAndLives from 'components/play/TimeAndLives'
+import { useEffect, useState } from 'react'
+// components
+import WithAuth from 'components/commons/withAuth'
+import PlayBoxOne from 'components/playBoxOne'
 import Loading from 'components/commons/Loading'
 
 // icons
@@ -13,11 +11,16 @@ import Life from 'components/icons/life'
 
 // hooks
 import { TimerProvider } from 'hooks/useTimer'
+import { AnswersProvider } from 'hooks/useAnswers'
+import { ActionsProvider } from 'hooks/useActions'
 // utils
 import { getColor } from 'utils/color'
+import { getQuestions, logOut } from 'firebase/client'
 
-export default function Jugar () {
 
+function Jugar () {
+    const [questions, setQuestions] = useState()
+    //const user = useUser()
     // console.log(timer.state)
     const color = getColor(8)
     // console.log(color)
@@ -26,50 +29,27 @@ export default function Jugar () {
             <Loading/>
         </section>
     )*/
+
+    useEffect(() => {
+        (async () => {
+            const listQuestions = await getQuestions()
+            setQuestions(listQuestions)
+        })()
+    },[])
+
+    if(!questions) return null
     return (
         <>
             <Head>
                 <title>Jugar</title>
             </Head>
             <TimerProvider>
-                <section 
-                className='my-4 mx-1'
-                >
-                    <Title/>
-                    <TimeAndLives lives={3} />
-                    <section
-                    className='flex my-2 justify-center items-center'
-                    >
-                        <h3
-                        className='uppercase font-bold text-blue-900'
-                        >Categoria: </h3>
-                        <CategoryTag color={color}>Escalas</CategoryTag>
-                    </section>
-                    <QuestionBox 
-                    question='Cuales son las alteraciones de la escala de Do Mayor' 
-                    color={color}
-                    />
-                    <AnswerBox
-                    answers={[
-                    {
-                        answer: 'Niguna',
-                        id: 1
-                    },
-                    {
-                        answer: 'Fa#',
-                        id: 2
-                    },
-                    {
-                        answer: 'Fa# Do# Sol# Re# La# Mi# Si#',
-                        id: 3
-                    },
-                    {
-                        answer: 'Sib',
-                        id: 4
-                    }
-                    ]}/>
-                </section>
+                <ActionsProvider>
+                    <PlayBoxOne questions={questions}/>
+                </ActionsProvider>
             </TimerProvider>
         </>
     )
 }
+
+export default WithAuth(Jugar)

@@ -17,7 +17,7 @@ function timeReducer(state,action) {
             return { ...state }
         }
         case 'restart':
-            return { INITIAL_STATE }
+            return { ...state, ...INITIAL_STATE }
         case 'stop':
             return { ...state, time: 0, hasBeenExtended: true}
         default:
@@ -32,20 +32,25 @@ export function TimerProvider ({ children }) {
 
 
     useEffect(() => {
-        
+        initTimer()    
+    },[])
+
+
+    if (state.time === 0) {
+        clearInterval(intervalID)
+    }
+
+    const initTimer = () => {
         if (state.time > 0) {
             intervalID = setInterval(() => {
                 dispatch({type: 'decrement'})
             }, 1000);
         }
-        
-    },[])
-    if (state.time === 0) {
-        clearInterval(intervalID)
     }
     const value = { 
         state, 
-        dispatch 
+        dispatch,
+        initTimer,
     }
     return <TimerContext.Provider value={value}>{children}</TimerContext.Provider>
 }

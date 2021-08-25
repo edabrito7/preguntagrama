@@ -1,5 +1,5 @@
 export const firebaseConfig = {
-    apiKey: "AIzaSyDL2p10g3PY9Bud6hoxfYNziNFmZHVtrzQ",
+    apiKey: process.env.NEXT_PUBLIC_API_KEY,
     authDomain: "preguntagrama.firebaseapp.com",
     projectId: "preguntagrama",
     storageBucket: "preguntagrama.appspot.com",

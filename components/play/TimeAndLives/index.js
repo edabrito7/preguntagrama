@@ -5,9 +5,11 @@ import Life from 'components/icons/life'
 
 // hooks
 import { useTimer } from 'hooks/useTimer'
+import { useActions } from 'hooks/useActions'
 
-export default function TimeAndLives ({ lives }) {
+export default function TimeAndLives () {
     const timer = useTimer()
+    const { lives } = useActions()
     // handle lifes
     return (
         <section
@@ -19,15 +21,15 @@ export default function TimeAndLives ({ lives }) {
             >
             <p>Vidas:</p>
             <Life
-            stroke='#00000029'
+            stroke={ lives > 0 ? '#000' : '#00000029'}
             />
-            <Life />
-            <Life/>
+            <Life 
+            stroke={ lives > 1 ? '#000' : '#00000029'}
+            />
+            <Life
+            stroke={ lives > 2 ? '#000' : '#00000029'}
+            />
             </div>
         </section>
     )
-}
-
-TimeAndLives.propTypes = {
-    lives: PropTypes.number.isRequired
 }

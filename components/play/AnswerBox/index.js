@@ -1,8 +1,13 @@
 import PropTypes from 'prop-types'
 import AnswerCard from '../AnswerCard'
+// hooks
+import { useAnswers } from 'hooks/useAnswers'
+export default function AnswerBox({ answersArray, correctAnswer }) {
+    const answers = useAnswers()
+    answers.addCorrectAnswer(correctAnswer)
+    console.log(correctAnswer)
 
-export default function AnswerBox({ answers }) {
-    const answersMapping = answers.map(({answer, id}) => {
+    const answersMapping = answersArray.map(({answer, id}) => {
         return <AnswerCard key={id} answer={answer} id={id}/>
     })
     return (
@@ -16,5 +21,6 @@ export default function AnswerBox({ answers }) {
 }
 
 AnswerBox.propTypes = {
-    answers: PropTypes.array.isRequired
+    answersArray: PropTypes.array.isRequired,
+    correctAnswer: PropTypes.string.isRequired
 }
