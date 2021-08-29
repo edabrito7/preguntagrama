@@ -6,7 +6,7 @@ export function ActionsProvider ({ children }) {
     const [lives, setLives] = useState(3)
     const [record, setRecord] = useState()
     const [currentQuestion, setCurrentQuestion] = useState(0)
-    const [modal, setModal] = useState(true)
+    const [modal, setModal] = useState(false)
 
     const loseLife = () => {
         const newlives = lives - 1

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import WithAuth from 'components/commons/withAuth'
 import PlayBoxOne from 'components/playBoxOne'
 import Loading from 'components/commons/Loading'
+import Title from 'components/commons/Title'
 
 // icons
 import Life from 'components/icons/life'
@@ -14,35 +15,17 @@ import { TimerProvider } from 'hooks/useTimer'
 import { AnswersProvider } from 'hooks/useAnswers'
 import { ActionsProvider } from 'hooks/useActions'
 // utils
-import { getColor } from 'utils/color'
-import { getQuestions, logOut } from 'firebase/client'
+import { getQuestions } from 'firebase/client'
 
 
-function Jugar () {
-    const [questions, setQuestions] = useState()
-    //const user = useUser()
-    // console.log(timer.state)
-    const color = getColor(8)
-    // console.log(color)
-    /*if (!user) return (
-        <section className='h-screen'>
-            <Loading/>
-        </section>
-    )*/
+function Jugar ({ questions }) {
 
-    useEffect(() => {
-        (async () => {
-            const listQuestions = await getQuestions()
-            setQuestions(listQuestions)
-        })()
-    },[])
-
-    if(!questions) return null
     return (
         <>
             <Head>
                 <title>Jugar</title>
             </Head>
+            <Title/>
             <TimerProvider>
                 <ActionsProvider>
                     <PlayBoxOne questions={questions}/>
@@ -50,6 +33,13 @@ function Jugar () {
             </TimerProvider>
         </>
     )
+}
+
+export async function getServerSideProps () {
+    const questions = await getQuestions()
+    return {
+        props: {questions}
+    }
 }
 
 export default WithAuth(Jugar)

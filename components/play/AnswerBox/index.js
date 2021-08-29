@@ -2,9 +2,12 @@ import PropTypes from 'prop-types'
 import AnswerCard from '../AnswerCard'
 // hooks
 import { useAnswers } from 'hooks/useAnswers'
+import { useEffect } from 'react'
 export default function AnswerBox({ answersArray, correctAnswer }) {
     const answers = useAnswers()
-    answers.addCorrectAnswer(correctAnswer)
+    useEffect(() => {
+        answers.addCorrectAnswer(correctAnswer)
+    },[])
     console.log(correctAnswer)
 
     const answersMapping = answersArray.map(({answer, id}) => {

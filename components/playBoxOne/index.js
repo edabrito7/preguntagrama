@@ -8,6 +8,7 @@ import TimeAndLives from 'components/play/TimeAndLives'
 import Button from 'components/commons/Button'
 
 import { getColor } from 'utils/color'
+import { getCategoryName } from 'utils/categories'
 
 import { useActions } from 'hooks/useActions'
 import { AnswersProvider } from 'hooks/useAnswers'
@@ -17,7 +18,8 @@ import {  logOut } from 'firebase/client'
 export default function PlayBoxOne ({questions}) {
     const { currentQuestion, modal, closeModal } = useActions()
 
-    const color = getColor(questions.category)
+    const color = getColor(questions[currentQuestion].category)
+    const categoryName = getCategoryName(questions[currentQuestion].category)
 
     return (
         <>
@@ -27,7 +29,6 @@ export default function PlayBoxOne ({questions}) {
             <section 
             className='my-4 mx-1'
             >
-                <Title/>
                 <TimeAndLives />
                 <section
                 className='flex my-2 justify-center items-center'
@@ -36,7 +37,7 @@ export default function PlayBoxOne ({questions}) {
                     className='uppercase font-bold text-blue-900'
                     >Categoria: 
                     </h3>
-                    <CategoryTag color={color}>Escalas</CategoryTag>
+                    <CategoryTag color={color}>{categoryName}</CategoryTag>
                 </section>
                 <QuestionBox 
                 question={questions[currentQuestion].question}
