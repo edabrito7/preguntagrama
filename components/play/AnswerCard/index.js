@@ -11,14 +11,15 @@ export default function AnswerCard ({answer, id }) {
     const timer = useTimer()
     const actions = useActions()
     const { correctAnswer }= useAnswers()
-    const { loseLife } = useActions()
+    const { loseLife, openModal } = useActions()
     const isAllowed = timer.state.time === 0
     const handleClick = async () => {
         timer.dispatch({type: 'stop'})
         const verifyAnswer = await getCorrectAnswer(correctAnswer)
         if(verifyAnswer.answer !== answer) {
             loseLife()
-            timer.dispatch({type: 'restart'})
+            openModal()
+           //timer.dispatch({type: 'restart'})
         } else {
             actions.nextQuestion()
             timer.dispatch({type: 'restart'})

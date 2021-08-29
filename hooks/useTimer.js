@@ -41,11 +41,10 @@ export function TimerProvider ({ children }) {
     }
 
     const initTimer = () => {
-        if (state.time > 0) {
             intervalID = setInterval(() => {
                 dispatch({type: 'decrement'})
             }, 1000);
-        }
+      
     }
     const value = { 
         state, 
