@@ -4,9 +4,14 @@ import { useRouter } from 'next/router'
 import Header from 'components/commons/Header'
 import Button from 'components/commons/Button'
 import HomeImage from 'assets/home.jpg'
+import { useUser } from 'hooks/useUser'
 
 export default function Home() {
   const router = useRouter()
+  const user = useUser()
+  const handlePlay = () => {
+    user ? router.push('/jugar') : router.push('/registro')
+  }
   return (
     <>
       <Head>
@@ -25,28 +30,21 @@ export default function Home() {
           />
         </figure>
         <Button 
-          onClick={() => router.push('/registro')}
-          type='primary'
+          style='register'
+          onClick={handlePlay}
           >
-            Registrarse y jugar
+            {user ? 'Jugar' : 'Registrarse y Jugar'}
+        </Button>
+        <Button 
+          onClick={() => router.push('/iniciar-sesion')}
+          >
+            Iniciar sesión
         </Button>
         <Button 
           onClick={() => router.push('/instrucciones')}
-          type='secundary'
+          style='secundary'
           >
             Instrucciones
-        </Button>
-        <Button 
-          onClick={() => router.push('/instrucciones')}
-          type='alert'
-          >
-            Alert
-        </Button>
-        <Button 
-          onClick={() => router.push('/instrucciones')}
-          type='cancel'
-          >
-            Cancel
         </Button>
       </div>
     </>

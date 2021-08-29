@@ -11,7 +11,6 @@ export function ActionsProvider ({ children }) {
     const loseLife = () => {
         const newlives = lives - 1
         setLives(newlives)
-        nextQuestion()
         return newlives
     }
 
@@ -31,6 +30,7 @@ export function ActionsProvider ({ children }) {
 
     const closeModal = () => {
         setModal(false)
+        nextQuestion()
     }
 
     const value = {

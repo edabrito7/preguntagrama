@@ -32,7 +32,10 @@ export function TimerProvider ({ children }) {
 
 
     useEffect(() => {
-        initTimer()    
+        initTimer()  
+        return () => {
+            clearInterval(intervalID) 
+        }  
     },[])
 
 

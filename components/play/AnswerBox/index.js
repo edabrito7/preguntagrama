@@ -5,10 +5,10 @@ import { useAnswers } from 'hooks/useAnswers'
 import { useEffect } from 'react'
 export default function AnswerBox({ answersArray, correctAnswer }) {
     const answers = useAnswers()
+    
     useEffect(() => {
         answers.addCorrectAnswer(correctAnswer)
-    },[])
-    console.log(correctAnswer)
+    },[correctAnswer])
 
     const answersMapping = answersArray.map(({answer, id}) => {
         return <AnswerCard key={id} answer={answer} id={id}/>

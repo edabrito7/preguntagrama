@@ -13,12 +13,14 @@ import { getCategoryName } from 'utils/categories'
 
 import { useActions } from 'hooks/useActions'
 import { AnswersProvider } from 'hooks/useAnswers'
+import { useTimer } from 'hooks/useTimer'
 
 import {  logOut } from 'firebase/client'
 import End from 'components/end'
 
 export default function PlayBoxOne ({questions}) {
-    const { currentQuestion, modal, closeModal } = useActions()
+    const { currentQuestion, modal, closeModal, lives, openModal, loseLife } = useActions()
+    const timer = useTimer()
     const router = useRouter()
 
     if(currentQuestion >= questions.length) return <End/>
@@ -27,11 +29,19 @@ export default function PlayBoxOne ({questions}) {
     const color = getColor(questions[currentQuestion].category)
     const categoryName = getCategoryName(questions[currentQuestion].category)
 
+    const explication = 'Explicacion de la pregunta'
+    const closeModalAndRePlay = () => {
+        closeModal()
+        router.push('/')
+    }
 
     return (
         <>
             {
-                modal ? <Modal closeModal={closeModal} /> : null
+                modal ? <Modal closeModal={closeModal} explication={explication} /> : null
+            }
+            {
+                lives === 0 ? <Modal closeModal={closeModalAndRePlay} explication='Te has quedado sin vidas &#128553;' /> : null
             }
             <section 
             className='my-4 mx-1'

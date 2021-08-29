@@ -6,7 +6,8 @@ export default function Button ({ type, style, onClick, children }) {
         primary: 'bg-blue-700 border-blue-700 text-white hover:bg-opacity-90 hover:border-opacity-90',
         secundary: 'bg-white border-blue-600 text-blue-600 hover:text-blue-800 hover:border-blue-800',
         alert: 'bg-white border-red-600 text-red-600 hover:text-red-800 hover:border-red-800',
-        cancel: 'bg-red-700 border-red-700 text-white hover:bg-opacity-90 hover:border-opacity-90'
+        cancel: 'bg-red-700 border-red-700 text-white hover:bg-opacity-90 hover:border-opacity-90',
+        register: 'bg-teal-700 border-teal-700 text-white hover:bg-opacity-90 hover:border-opacity-90'
     }
     return (
         <button 

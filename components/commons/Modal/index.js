@@ -20,14 +20,14 @@ export default function Modal  ({ explication, closeModal }) {
             >
                 <h2
                 className='text-center text-xl text-blue-700'
-                >Parece que debemos estudiar un poquito mas...</h2>
+                >Parece que debemos estudiar un poquito más &#128532;</h2>
                 <span
                 onClick={handleClose}
                 className='absolute right-4 top-1 cursor-pointer text-lg'
                 >X</span>
                 <p
                 className='mt-4'
-                >Aqui va la explicacion que aun no tengo escrita en ninguna respuesta</p>
+                >{explication}</p>
                 <div
                 className='flex justify-center items-center my-4'
                 >

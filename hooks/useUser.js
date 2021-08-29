@@ -8,12 +8,11 @@ export function useUser () {
     const router = useRouter()
     useEffect(() => {
         onAuthStateChanged(setUser)
-        console.log(user)
     },[])
 
     useEffect(() => {
         user === null && router.push('/')
-        user && router.replace('/jugar')
+       // user && router.replace('/jugar')
     },[user])
 
     return user

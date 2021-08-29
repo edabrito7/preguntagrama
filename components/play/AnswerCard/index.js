@@ -23,6 +23,7 @@ export default function AnswerCard ({answer, id }) {
         } else {
             actions.nextQuestion()
             timer.dispatch({type: 'restart'})
+            timer.initTimer()
         }
     }
     return (
