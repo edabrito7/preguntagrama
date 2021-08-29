@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 // components
 import Title from 'components/commons/Title'
 import Modal from 'components/commons/Modal'
@@ -14,12 +15,18 @@ import { useActions } from 'hooks/useActions'
 import { AnswersProvider } from 'hooks/useAnswers'
 
 import {  logOut } from 'firebase/client'
+import End from 'components/end'
 
 export default function PlayBoxOne ({questions}) {
     const { currentQuestion, modal, closeModal } = useActions()
+    const router = useRouter()
+
+    if(currentQuestion >= questions.length) return <End/>
+
 
     const color = getColor(questions[currentQuestion].category)
     const categoryName = getCategoryName(questions[currentQuestion].category)
+
 
     return (
         <>

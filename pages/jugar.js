@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
+
 // components
 import WithAuth from 'components/commons/withAuth'
 import PlayBoxOne from 'components/playBoxOne'
