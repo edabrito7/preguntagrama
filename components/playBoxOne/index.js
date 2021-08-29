@@ -19,7 +19,7 @@ import {  logOut } from 'firebase/client'
 import End from 'components/end'
 
 export default function PlayBoxOne ({questions}) {
-    const { currentQuestion, modal, closeModal, lives, openModal, loseLife } = useActions()
+    const { currentQuestion, modal, closeModal, lives, nextQuestion, loseLife } = useActions()
     const timer = useTimer()
     const router = useRouter()
 
@@ -68,7 +68,7 @@ export default function PlayBoxOne ({questions}) {
                 </AnswersProvider>
             </section>
             <section
-            className='flex justify-center items-center'
+            className='flex justify-center items-center flex-col'
             >
                 <Button
                 type='button'
@@ -76,6 +76,19 @@ export default function PlayBoxOne ({questions}) {
                 style='cancel'
                 >Cerrar Sesion
                 </Button>
+                {
+                    (!timer.state.hasBeenStopped && timer.state.time === 0) ? (
+                        <Button
+                        onClick={() => {
+                            loseLife()
+                            nextQuestion()
+                            timer.dispatch({type: 'restart'})
+                            timer.initTimer()
+                        }}
+                        >Siguiente Pregunta
+                        </Button>
+                    ) : null
+                }
             </section>
         </>
     )

@@ -3,7 +3,8 @@ import { useReducer, useEffect, useContext, createContext } from 'react'
 
 const INITIAL_STATE = {
     time: 10,
-    hasBeenExtended: false
+    hasBeenExtended: false,
+    hasBeenStopped: false
 }
 
 const TimerContext = createContext()
@@ -19,7 +20,7 @@ function timeReducer(state,action) {
         case 'restart':
             return { ...state, ...INITIAL_STATE }
         case 'stop':
-            return { ...state, time: 0, hasBeenExtended: true}
+            return { ...state, time: 0, hasBeenExtended: true, hasBeenStopped: true}
         default:
             throw new Error('No ACTION.TYPE')  
     }
