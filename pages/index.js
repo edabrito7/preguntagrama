@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import  Link  from 'next/link'
 import { useRouter } from 'next/router'
 import Header from 'components/commons/Header'
 import Button from 'components/commons/Button'
@@ -24,10 +25,14 @@ export default function Home() {
             src={HomeImage}
             alt="Preguntagrama home"
             layout='fill'
-            objectFit='cover'
             placeholder='blur'
             className='rounded-md'
           />
+          <Link  href='https://www.freepik.es/vectores/musica'>
+            <a className='text-xs text-gray-600 text-center absolute -bottom-2'>
+              Vector de Música creado por rawpixel.com - freepik
+            </a>
+          </Link>
         </figure>
         <Button 
           style='register'
@@ -35,11 +40,15 @@ export default function Home() {
           >
             {user ? 'Jugar' : 'Registrarse y Jugar'}
         </Button>
-        <Button 
-          onClick={() => router.push('/iniciar-sesion')}
-          >
+        {
+          user ? null : (
+            <Button 
+            onClick={() => router.push('/iniciar-sesion')}
+            >
             Iniciar sesión
-        </Button>
+            </Button>
+          ) 
+        }
         <Button 
           onClick={() => router.push('/instrucciones')}
           style='secundary'

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-
+import { useRouter } from 'next/router'
 import Title from 'components/commons/Title'
 import Button from 'components/commons/Button'
 import TextInput from 'components/commons/TextInput'
@@ -10,17 +10,24 @@ import { singUp, loginWithGoogle } from 'firebase/client'
 
 // hooks
 import { useText } from 'hooks/useText'
-import { useUser } from 'hooks/useUser'
+
 
 export default function Registro () {
+    const router = useRouter()
     const form = useText()
-    //const user = useUser()
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(form.value)
         const user = await singUp(form.value)
         console.log(user)
     }
+
+    const handleSignInGoogle = async () => {
+        const user = await loginWithGoogle()
+        if(user) return router.push('/jugar')
+    }
+
     return (
         <>
             <Head>
@@ -74,7 +81,7 @@ export default function Registro () {
                     </Button>
                     <Button
                     type='button'
-                    onClick={() => loginWithGoogle()}
+                    onClick={handleSignInGoogle}
                     >Inicia sesión con Google
                     </Button>
                     </div>

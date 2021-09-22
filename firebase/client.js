@@ -49,9 +49,11 @@ export const onAuthStateChanged = (onChange) => {
     })
   };
 
-export const loginWithGoogle = () => {
+export const loginWithGoogle = async () => {
     const googleProvider = new firebase.auth.GoogleAuthProvider()
-    return auth.signInWithPopup(googleProvider)
+    const { user } = await auth.signInWithPopup(googleProvider)
+    addUser(user)
+    return user
 }
 
 const addUser = async (userAuth, additionalData) => {
@@ -63,11 +65,12 @@ const addUser = async (userAuth, additionalData) => {
 
     if(!snapShot.exists) {
         const { email } = userAuth
+
         try {
             userRef.set({
                 email,
-                name: additionalData.name || '',
-                lastName: additionalData.lastName || '',
+                name: additionalData?.name || userAuth.displayName.split(' ')[0],
+                lastName: additionalData?.lastName || userAuth.displayName.split(' ')[1],
                 date: createdAt,
                 corrects: 0,
                 incorrects: 0,

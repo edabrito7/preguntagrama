@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -6,20 +7,28 @@ import Title from 'components/commons/Title'
 import Button from 'components/commons/Button'
 import TextInput from 'components/commons/TextInput'
 // firebase
-import { signIn } from 'firebase/client'
+import { signIn, loginWithGoogle } from 'firebase/client'
 // hooks
 import { useText } from 'hooks/useText'
 import { useUser } from 'hooks/useUser'
 
 
 export default function IniciarSesion () {
+    const [hasErrors, setHasErrors] = useState(false)
     const form = useText()
     //const user = useUser()
     const router = useRouter()
     const handleSubmit = async (event) => {
         event.preventDefault()
         const response = await signIn(form.value)
-        response && router.push('/jugar')
+
+        if (response) return router.push('/jugar')
+        setHasErrors(true)
+    }
+
+    const handleSignInGoogle = async () => {
+        const user = await loginWithGoogle()
+        if(user) return router.push('/jugar')
     }
 
     return (
@@ -51,19 +60,25 @@ export default function IniciarSesion () {
                     name='password'
                     handleChange={form.handleChange}
                     />
-                    <div className='flex mt-4'>
+                    <div className='flex mt-4 relative '>
                     <Button 
                     type='submit'
                     style='primary'
                     >Iniciar sesión
                     </Button>
                     <Button
+                    onClick={handleSignInGoogle}
                     >Inicia sesión con Google
                     </Button>
+                    {
+                        hasErrors ? (
+                            <p className='text-center text-red-600 absolute -bottom-4 w-full' >Usuario o contraseña incorrecta</p>
+                        ) : null
+                    }
                     </div>
                 </form>
                 <p 
-                className='flex justify-center'
+                className='flex justify-center mt-6'
                 >No tengo una cuenta
                     <Link
                     href='/registro'
