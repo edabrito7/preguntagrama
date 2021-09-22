@@ -2,7 +2,7 @@ import { useReducer, useEffect, useContext, createContext } from 'react'
 
 
 const INITIAL_STATE = {
-    time: 10,
+    time: 30,
     hasBeenExtended: false,
     hasBeenStopped: false
 }
