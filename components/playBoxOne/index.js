@@ -29,7 +29,7 @@ export default function PlayBoxOne ({questions}) {
     const color = getColor(questions[currentQuestion].category)
     const categoryName = getCategoryName(questions[currentQuestion].category)
 
-    const explication = 'Explicacion de la pregunta'
+    const explication = ''
     const closeModalAndRePlay = () => {
         closeModal()
         router.push('/')
@@ -70,6 +70,12 @@ export default function PlayBoxOne ({questions}) {
             <section
             className='flex justify-center items-center flex-col'
             >
+                <Button
+                type='button'
+                onClick={() => router.push('/')}
+                style='secundary'
+                >Home
+                </Button>
                 <Button
                 type='button'
                 onClick={() => logOut()}

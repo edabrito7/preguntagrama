@@ -7,7 +7,7 @@ export default function Header () {
             <h1 className='mr-auto sm:text-2xl lg:text-4xl text-lg font-bold'>Preguntagrama &#127929;</h1>
             <nav>
                 <ul className='flex'>
-                    <li className='mx-2'>
+                    <li className='mx-2 text-sm md:text-base'>
                         <Link href='/proyecto'>
                             <a>Sobre el proyecto</a>
                         </Link>

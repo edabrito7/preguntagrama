@@ -3,22 +3,18 @@ import Head from 'next/head'
 // components
 import WithAuth from 'components/commons/withAuth'
 import PlayBoxOne from 'components/playBoxOne'
-import Loading from 'components/commons/Loading'
 import Title from 'components/commons/Title'
-
-// icons
-import Life from 'components/icons/life'
-
 
 // hooks
 import { TimerProvider } from 'hooks/useTimer'
-import { AnswersProvider } from 'hooks/useAnswers'
 import { ActionsProvider } from 'hooks/useActions'
+
 // utils
 import { getQuestions } from 'firebase/client'
 
 
 function Jugar ({ questions }) {
+    const messArray = questions.sort(() => Math.random() - 0.5)
 
     return (
         <>
@@ -28,7 +24,7 @@ function Jugar ({ questions }) {
             <Title/>
             <TimerProvider>
                 <ActionsProvider>
-                    <PlayBoxOne questions={questions}/>
+                    <PlayBoxOne questions={messArray}/>
                 </ActionsProvider>
             </TimerProvider>
         </>

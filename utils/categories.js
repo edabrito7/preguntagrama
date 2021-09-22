@@ -1,6 +1,9 @@
 const categories = {
     1: 'Escalas',
-    2: 'Figuras'
+    2: 'Figuras',
+    3: 'Compás'
+
+    // maximo 9
 }
 
 

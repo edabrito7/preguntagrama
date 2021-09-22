@@ -1,13 +1,16 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 // components
 import Title from 'components/commons/Title'
+import Button from 'components/commons/Button'
 
 // icons
 import Clock from 'components/icons/clock'
 import Life from 'components/icons/life'
 
 export default function Instrucciones () {
+    const router = useRouter()
     return (
         <>
             <Head>
@@ -43,7 +46,7 @@ export default function Instrucciones () {
                     className='my-4'
                     >
                         Si, cada pregunta tiene un tiempo máximo para responderse de 30 segundos. 
-                        El tiempo se puede extiende 15 segundos al hacer click en el icono del reloj en la parte inferior-derecha de cada pregunta.
+                        El tiempo se puede extender 15 segundos al hacer click en el icono del reloj en la parte inferior-derecha de cada pregunta.
                     </p>
                     <figure
                     className='flex justify-center items-center my-8'
@@ -69,6 +72,9 @@ export default function Instrucciones () {
                         stroke='#00000029'
                         />
                     </figure>
+                </section>
+                <section className='flex justify-center mt-4'>
+                    <Button onClick={() => router.push('/jugar')}>Jugar</Button>
                 </section>
             </main>
         </>
